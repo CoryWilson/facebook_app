@@ -7,21 +7,18 @@
   <script>try{Typekit.load();}catch(e){}</script>
 </head>
 <header>
-  <div class="icon-bar six-up">
+  <div class="icon-bar four-up">
     <a href="index.php?controller=home" class="item">
       <label>Home</label>
     </a>
-    <a href="index.php?controller=home&action=loginForm" class="item">
+    <a href="<?= $par2 ?>" class="item">
       <label>Facebook Log In</label>
-    </a>
-    <!--<a href="index.php?controller=home&action=logOut" class="item">
-      <label>Log Out</label>
-    </a> -->
+    </a> 
     <a href="index.php?controller=home&action=entryForm" class="item">
       <label>Create Entry</label>
     </a>
     <a href="index.php?controller=home&action=checkEntry" class="item">
-      <label>Image Slider</label>
+      <label>Check Entry</label>
     </a>
 
   </div>
