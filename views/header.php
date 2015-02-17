@@ -11,20 +11,17 @@
     <a href="index.php?controller=home" class="item">
       <label>Home</label>
     </a>
-    <a href="index.php?controller=home&action=addForm" class="item">
-      <label>Add User</label>
-    </a>
     <a href="index.php?controller=home&action=loginForm" class="item">
-      <label>Log In</label>
+      <label>Facebook Log In</label>
     </a>
-    <a href="index.php?controller=home&action=logOut" class="item">
+    <!--<a href="index.php?controller=home&action=logOut" class="item">
       <label>Log Out</label>
+    </a> -->
+    <a href="index.php?controller=home&action=entryForm" class="item">
+      <label>Create Entry</label>
     </a>
-    <a href="index.php?controller=home&action=checkProfile" class="item">
-      <label>Profile</label>
-    </a>
-    <a href="index.php?controller=home&action=weatherForm" class="item">
-      <label>Check Weather</label>
+    <a href="index.php?controller=home&action=checkEntry" class="item">
+      <label>Image Slider</label>
     </a>
 
   </div>
