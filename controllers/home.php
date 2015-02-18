@@ -69,17 +69,20 @@ if(isset($session)){
 
 if(empty($_GET["action"])){
 
-	//$data = $helper->getLoginUrl();
 	$viewmodel->getView("views/header.php",$link);
-	$viewmodel->getView("views/form.php"); //, $data);
+	$usersmodel->getUsers();
+	$viewmodel->getView("views/form.php"); 
+	echo "empty home";
 
 }	else{
 
 		if($_GET["action"]=="home"){
 
-			//$data = $helper->getLoginUrl();
 			$viewmodel->getView("views/header.php",$link);
-			$viewmodel->getView("views/body.php");
+			$usersmodel->getUsers();
+			$viewmodel->getView("views/form.php");
+			echo "action == home";
+
 
 		} 	else if($_GET["action"]=="entryForm"){
 
@@ -91,12 +94,11 @@ if(empty($_GET["action"])){
 			$image = $filemodel->upload($_FILES);
 			$data = $entriesmodel->addEntries($_POST["title"], $image, $_POST["description"]);
 			$data = $entriesmodel->getEntries();
-			$viewmodel->getView("views/header.php", $data);
-			//$viewmodel->getView("views/body.php", $data);
 
 		}	else if($_GET["action"]=="displayEntry"){
 
-			
+			$viewmodel->getView("views/header.php");
+			$viewmodel->getView("views/entry.php");
 
 		}
 }

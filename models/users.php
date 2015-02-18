@@ -17,7 +17,7 @@
 
     public function getUsers(){
 
-      $dbh = new PDO('mysql:host=localhost;dbname=ssl;port=8889','root','root');
+      $dbh = new PDO('mysql:host=localhost;dbname=facebook;port=8889','root','root');
     
       $sql = "select * from users"; 
 
@@ -28,7 +28,9 @@
       return $st->fetchAll();
 
     }
-
+    
+  }
+    /*
     public function updateUser($username, $password, $userid){
 
       $dbh = new PDO('mysql:host=localhost;dbname=ssl;port=8889','root','root');
@@ -71,7 +73,6 @@
       $st->execute(array(":id"=>$userid));
     
     }
-
-  }
+    */
 
 ?>
