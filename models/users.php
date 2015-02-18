@@ -45,16 +45,16 @@
 
     }
 
-    public function addUser($username, $password){
+    public function addUser($id,$fname,$lname){
 
-      $dbh = new PDO('mysql:host=localhost;dbname=ssl;port=8889','root','root');
+      $dbh = new PDO('mysql:host=localhost;dbname=facebook;port=8889','root','root');
     
       $sql = "insert into users
-              (username,password) values (:username,:password)"; 
+              (id,firstname,lastname) values (:id,:fname,:lname)"; 
 
       $st = $dbh->prepare($sql);
 
-      $st->execute(array(":username"=>$username, ":password"=>md5($password)));
+      $st->execute(array(":id"=>$id, ":fname"=>$fname, ":lname"=>$lname ));
 
     }
 

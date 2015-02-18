@@ -4,15 +4,15 @@
 
     public function checkuser($user){
 
-      $dbh = new PDO('mysql:host=localhost;dbname=ssl;port=8889','root','root');
+      $dbh = new PDO('mysql:host=localhost;dbname=facebook;port=8889','root','root');
     
-      $sql = "select id, username, password from users where
-      			username = :un and password = :pass"; 
+      $sql = "select id, firstname, lastname from users where
+      			id = :id and firstname = :fname and lastname = :lname"; 
 
       $st = $dbh->prepare($sql);
 
-      $st->execute(array(':un'=>$user['username'],
-      					 ':pass'=>md5($user['password'])));
+      $st->execute(array(':id'=>$user['id'], ':fname'=>$user['first_name'],
+      					 ':lname'=>$user['last_name']));
 
       return $st->fetchAll();
 

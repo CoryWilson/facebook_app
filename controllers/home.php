@@ -1,14 +1,16 @@
 <?
 session_start();
 include 'models/view.php';
-//include 'models/fblogin.php';
+include 'models/login.php';
 include 'models/entries.php';
 include 'models/file.php';
+include 'models/users.php';
 
 $viewmodel = new view();
-//$fbloginmodel = new fblogin();
+$loginmodel = new login();
 $filemodel = new file();
 $entriesmodel = new entries();
+$usersmodel = new users();
 
 require_once( 'lib/Facebook/FacebookSession.php');
 require_once( 'lib/Facebook/FacebookRequest.php' );
@@ -46,22 +48,24 @@ $redirectUrl= "http://localhost:8888/facebook_app/";
 FacebookSession::setDefaultApplication($appId,$appSecret);
 $helper = new FacebookRedirectLoginHelper($redirectUrl);
 $session = $helper->getSessionFromRedirect();
+$link = $helper->getLoginUrl();
 
 if(isset($session)){
-	header('Content-Type: application/json');
 	$request = new FacebookRequest($session, 'GET', '/me');
 	$response = $request->execute();
 	$graph = $response->getGraphObject(GraphUser::className());
+	var_dump($graph);
+	
+	$id = $graph->getId();
+	$fname = $graph->getFirstName();
+	$lname = $graph->getLastName();
 
-	//var_dump($graph);
+	echo $id.$fname.$lname;
 
-}	else{
-
-	$link = $helper->getLoginUrl();
-
-	//var_dump($link);
-
+	$usersmodel->addUser($id,$fname,$lname);
+	//$loginmodel->checkuser($graph);
 }
+
 
 if(empty($_GET["action"])){
 
@@ -79,7 +83,7 @@ if(empty($_GET["action"])){
 
 		} 	//Facebook Login Happens Here
 			else if($_GET["action"]=="fbLogin"){
-
+	
 			//$fbloginmodel->goToLogin($appId,$appSecret,$redirectUrl);
 			$viewmodel->getView("views/header.php", $data);
 			//$viewmodel->getView("views/form.php");
