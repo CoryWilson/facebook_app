@@ -2,6 +2,19 @@
 
   class users{
 
+    public function addUser($id,$fname,$lname){
+
+      $dbh = new PDO('mysql:host=localhost;dbname=facebook;port=8889','root','root');
+    
+      $sql = "insert into users
+              (id,firstname,lastname) values (:id,:fname,:lname)"; 
+
+      $st = $dbh->prepare($sql);
+
+      $st->execute(array(":id"=>$id, ":fname"=>$fname, ":lname"=>$lname ));
+
+    }
+
     public function getUsers(){
 
       $dbh = new PDO('mysql:host=localhost;dbname=ssl;port=8889','root','root');
@@ -45,18 +58,7 @@
 
     }
 
-    public function addUser($id,$fname,$lname){
-
-      $dbh = new PDO('mysql:host=localhost;dbname=facebook;port=8889','root','root');
     
-      $sql = "insert into users
-              (id,firstname,lastname) values (:id,:fname,:lname)"; 
-
-      $st = $dbh->prepare($sql);
-
-      $st->execute(array(":id"=>$id, ":fname"=>$fname, ":lname"=>$lname ));
-
-    }
 
     public function deleteUser($userid){
       

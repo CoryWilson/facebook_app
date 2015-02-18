@@ -2,7 +2,7 @@
 
   class login{
 
-    public function checkuser($user){
+    public function checkuser($id,$fname,$lname){
 
       $dbh = new PDO('mysql:host=localhost;dbname=facebook;port=8889','root','root');
     
@@ -11,8 +11,8 @@
 
       $st = $dbh->prepare($sql);
 
-      $st->execute(array(':id'=>$user['id'], ':fname'=>$user['first_name'],
-      					 ':lname'=>$user['last_name']));
+      $st->execute(array(':id'=>$id, ':fname'=>$fname,
+      					 ':lname'=>$lname));
 
       return $st->fetchAll();
 

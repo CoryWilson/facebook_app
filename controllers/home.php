@@ -54,7 +54,7 @@ if(isset($session)){
 	$request = new FacebookRequest($session, 'GET', '/me');
 	$response = $request->execute();
 	$graph = $response->getGraphObject(GraphUser::className());
-	var_dump($graph);
+	//var_dump($graph);
 	
 	$id = $graph->getId();
 	$fname = $graph->getFirstName();
@@ -63,7 +63,7 @@ if(isset($session)){
 	echo $id.$fname.$lname;
 
 	$usersmodel->addUser($id,$fname,$lname);
-	//$loginmodel->checkuser($graph);
+	$loginmodel->checkuser($id,$fname,$lname);
 }
 
 
@@ -81,14 +81,7 @@ if(empty($_GET["action"])){
 			$viewmodel->getView("views/header.php",$link);
 			$viewmodel->getView("views/body.php");
 
-		} 	//Facebook Login Happens Here
-			else if($_GET["action"]=="fbLogin"){
-	
-			//$fbloginmodel->goToLogin($appId,$appSecret,$redirectUrl);
-			$viewmodel->getView("views/header.php", $data);
-			//$viewmodel->getView("views/form.php");
-
-		}	else if($_GET["action"]=="entryForm"){
+		} 	else if($_GET["action"]=="entryForm"){
 
 			$viewmodel->getView("views/header.php");
 			$viewmodel->getView("views/form.php");
