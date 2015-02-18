@@ -1,6 +1,12 @@
 <div class="entry small-11 small-centered medium-11 medium-centered large-11 large-centered columns">
 	<div class="row">
-		<h1><?= "Title Goes Here" ?></h1>
+		<h1>$par2</h1><? var_dump($par2) ?>
+	</div>
+	<div class="row">
+		<h1>$par3</h1><? var_dump($par3) ?>
+	</div>
+	<div class="row">
+		<h1><?= $par2["title"] ?></h1>
 	</div>
 	<div class="row">
 		<div class="slider">
@@ -10,7 +16,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<p><?= "Description Goes Here" ?></p>
+		<p><?= $par2["description"] ?></p>
 	</div>
 </div>
 <script type="text/javascript">

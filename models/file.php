@@ -6,10 +6,10 @@
 
     	$uploaddir = './uploads/';
     	$uploadfile = $uploaddir . basename($up['image']['name']);
-      $imgUrl = move_uploaded_file($up['image']['tmp_name'], $uploadfile);
+      	move_uploaded_file($up['image']['tmp_name'], $uploadfile);
 
-      return $imgUrl;
-    	
+      	return $uploadfile;
+
     }
 
   }

@@ -29,3 +29,14 @@ form .row {
 	padding: 30px;
 }
 
+.slider {
+	height: 500px;
+}
+/*.slick-slide {
+	height: 500px;
+}*/
+.slider img {
+	border: 2px solid black;
+	box-shadow: 0 2px 5px rgba(51, 51, 51, 0.8);
+}
+

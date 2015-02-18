@@ -28,6 +28,8 @@
       return $st->fetchAll();
 
     }
+
+    
     
   }
     /*
@@ -45,21 +47,6 @@
       $st->execute(array(":username"=>$username, ":password"=>md5($password), ":id"=>$userid));
 
     }
-
-    public function getUser($userid){
-
-      $dbh = new PDO('mysql:host=localhost;dbname=ssl;port=8889','root','root');
-    
-      $sql = "select * from users where id = :id"; 
-
-      $st = $dbh->prepare($sql);
-
-      $st->execute(array(":id"=>$userid));
-
-      return $st->fetchAll();
-
-    }
-
     
 
     public function deleteUser($userid){

@@ -93,12 +93,16 @@ if(empty($_GET["action"])){
 
 			$image = $filemodel->upload($_FILES);
 			$data = $entriesmodel->addEntries($_POST["title"], $image, $_POST["description"]);
-			$data = $entriesmodel->getEntries();
+			$viewmodel->getView("views/header.php");
+			$viewmodel->getView("views/entry.php",$data,$image);
 
 		}	else if($_GET["action"]=="displayEntry"){
 
+			$data = $entriesmodel->getEntry(2);
+			var_dump($data);
+
 			$viewmodel->getView("views/header.php");
-			$viewmodel->getView("views/entry.php");
+			$viewmodel->getView("views/entry.php", $data);
 
 		}
 }

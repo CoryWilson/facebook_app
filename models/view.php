@@ -4,7 +4,7 @@
 
   class view{
 
-    public function getView($par='',$par2=''){
+    public function getView($par='',$par2='',$par3=''){
 
       include $par;
 
