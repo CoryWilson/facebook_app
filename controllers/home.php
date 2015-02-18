@@ -99,7 +99,7 @@ if(empty($_GET["action"])){
 
 		}	else if($_GET["action"]=="displayEntry"){
 
-
+			
 
 		}
 }
