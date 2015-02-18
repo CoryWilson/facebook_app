@@ -1,6 +1,6 @@
 <head>
   <meta charset="UTF-8">
-  <title>Cory Wilson & Victor Cabieles | Lab 5</title>
+  <title>Cory Wilson & Victor Cabieles | Lab 6</title>
   <link rel="stylesheet" href="css/foundation.min.css" type="text/css" />
   <link rel="stylesheet" href="css/main.css" type="text/css" />
   <link rel="stylesheet" href="css/slick.css" type="text/css" />

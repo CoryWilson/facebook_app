@@ -1,0 +1,5 @@
+Cory Wilson & Victor Cabieles
+SSL Lab 6
+Facebook Authentication, File Upload, Image Slider
+
+Video Link: http://youtu.be/L04_UTD0Oow
