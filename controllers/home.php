@@ -47,10 +47,22 @@ $redirectUrl= "http://localhost:8888/facebook_app/";
 
 FacebookSession::setDefaultApplication($appId,$appSecret);
 $helper = new FacebookRedirectLoginHelper($redirectUrl);
-$session = $helper->getSessionFromRedirect();
-$link = $helper->getLoginUrl();
+try {
+	$session = $helper->getSessionFromRedirect();
+} catch( FacebookRequestException $ex ){
+	// When Facebook returns an error
+	echo $ex;
+} catch( Exception $ex ){
+	// When validation fails or other local issues
+	echo $ex;
+}
+$link = '';
 
-if(isset($session)){
+if ( isset( $session ) )
+{
+	$_SESSION['token'] = $session->getToken();
+	$info = $session->getSessionInfo();
+
 	$request = new FacebookRequest($session, 'GET', '/me');
 	$response = $request->execute();
 	$graph = $response->getGraphObject(GraphUser::className());
@@ -62,8 +74,17 @@ if(isset($session)){
 
 	$usersmodel->addUser($id,$fname,$lname);
 	$loginmodel->checkuser($id,$fname,$lname);
+
+}
+else
+{
+	$link = $helper->getLoginUrl();
+
 }
 
+
+$flickr =  file_get_contents("https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=c6886b4b25a9e4c51b19af350eb6be78&extras=url_l%2Curl_h&per_page=4&format=json&nojsoncallback=1");
+$JSONarr = json_decode($flickr, true);
 
 if(empty($_GET["action"])){
 
@@ -90,15 +111,19 @@ if(empty($_GET["action"])){
 			$image = $filemodel->upload($_FILES);
 			$data = $entriesmodel->addEntries($_POST["title"], $image, $_POST["description"]);
 			$viewmodel->getView("views/header.php");
-			$viewmodel->getView("views/entry.php",$data,$image);
+			$data = $entriesmodel->getEntries();
+			$viewmodel->getView("views/entry.php",$data,$JSONarr);
+			//header()
 
 		}	else if($_GET["action"]=="displayEntry"){
 
 			$data = $entriesmodel->getEntries();
 			//var_dump($data);
+			
+			//$viewmodel->getView('views/body.php',$JSONarr);
 
 			$viewmodel->getView("views/header.php");
-			$viewmodel->getView("views/entry.php", $data);
+			$viewmodel->getView("views/entry.php", $data, $JSONarr);
 
 		}
 }
