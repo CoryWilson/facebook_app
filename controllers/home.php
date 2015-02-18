@@ -60,8 +60,6 @@ if(isset($session)){
 	$fname = $graph->getFirstName();
 	$lname = $graph->getLastName();
 
-	echo $id.$fname.$lname;
-
 	$usersmodel->addUser($id,$fname,$lname);
 	$loginmodel->checkuser($id,$fname,$lname);
 }
@@ -72,7 +70,6 @@ if(empty($_GET["action"])){
 	$viewmodel->getView("views/header.php",$link);
 	$usersmodel->getUsers();
 	$viewmodel->getView("views/form.php"); 
-	echo "empty home";
 
 }	else{
 
@@ -81,7 +78,6 @@ if(empty($_GET["action"])){
 			$viewmodel->getView("views/header.php",$link);
 			$usersmodel->getUsers();
 			$viewmodel->getView("views/form.php");
-			echo "action == home";
 
 
 		} 	else if($_GET["action"]=="entryForm"){
@@ -98,8 +94,8 @@ if(empty($_GET["action"])){
 
 		}	else if($_GET["action"]=="displayEntry"){
 
-			$data = $entriesmodel->getEntry(2);
-			var_dump($data);
+			$data = $entriesmodel->getEntries();
+			//var_dump($data);
 
 			$viewmodel->getView("views/header.php");
 			$viewmodel->getView("views/entry.php", $data);
